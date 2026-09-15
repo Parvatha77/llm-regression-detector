@@ -1,0 +1,18 @@
+services:
+  frontend:
+    build:
+      context: frontend
+      dockerfile: ../Dockerfile.frontend
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_API_URL=http://localhost:8000/api
+    develop:
+      watch:
+        - action: sync
+          path: frontend/src
+          target: /app/src
+          ignore:
+            - node_modules
+        - action: rebuild
+          path: frontend/package.json

@@ -1,0 +1,47 @@
+{
+  "run_id": "run_20260915_122737_131",
+  "prompt_version": "v1",
+  "pass_rate": 0.2,
+  "results": [
+    {
+      "case_id": "case_1",
+      "input": "Hi, I was charged twice for my subscription this month. Please refund the duplicate payment.",
+      "expected_category": "billing",
+      "actual_category": "general",
+      "category_match": false,
+      "summary": "Customer was charged twice for their subscription and requests a refund for the duplicate payment."
+    },
+    {
+      "case_id": "case_2",
+      "input": "I cannot log in to my account. The password reset link is not arriving in my inbox.",
+      "expected_category": "account",
+      "actual_category": "general",
+      "category_match": false,
+      "summary": "Customer cannot log in and is not receiving the password reset email."
+    },
+    {
+      "case_id": "case_3",
+      "input": "The API keeps returning HTTP 500 status code when uploading CSV files.",
+      "expected_category": "technical",
+      "actual_category": "general",
+      "category_match": false,
+      "summary": "The API returns HTTP 500 errors when uploading CSV files."
+    },
+    {
+      "case_id": "case_4",
+      "input": "What are your business operating hours and support SLA response times?",
+      "expected_category": "general",
+      "actual_category": "general",
+      "category_match": true,
+      "summary": "The customer is asking about business operating hours and support SLA response times."
+    },
+    {
+      "case_id": "case_5",
+      "input": "Can I upgrade my subscription plan from monthly to annual billing?",
+      "expected_category": "billing",
+      "actual_category": "general",
+      "category_match": false,
+      "summary": "Customer wants to upgrade subscription from monthly to annual billing."
+    }
+  ]
+}

@@ -1,0 +1,570 @@
+{
+  "dataset_version": "1.0.0",
+  "schema_version": 1,
+  "updated_at": "2026-09-15",
+  "description": "Human-verified ground truth for the customer support email classifier. Labels are the author's judgment; review every notes field before trusting a label.",
+  "categories": ["billing", "technical", "account", "general"],
+  "difficulty_levels": ["easy", "medium", "hard"],
+  "cases": [
+    {
+      "id": "case_1",
+      "input": "Hi, I was charged twice for my subscription this month. Please refund the duplicate payment.",
+      "expected_category": "billing",
+      "expected_difficulty": "easy",
+      "notes": "Explicit duplicate-charge signal. The canonical billing case."
+    },
+    {
+      "id": "case_2",
+      "input": "I cannot log in to my account. The password reset link is not arriving in my inbox.",
+      "expected_category": "account",
+      "expected_difficulty": "easy",
+      "notes": "Access-recovery case. Reset link missing is still an account issue, not technical, because no error is reported."
+    },
+    {
+      "id": "case_3",
+      "input": "The API keeps returning HTTP 500 status code when uploading CSV files.",
+      "expected_category": "technical",
+      "expected_difficulty": "easy",
+      "notes": "Concrete server error code. Textbook technical."
+    },
+    {
+      "id": "case_4",
+      "input": "What are your business operating hours and support SLA response times?",
+      "expected_category": "general",
+      "expected_difficulty": "easy",
+      "notes": "Pure information request, no account or system state involved."
+    },
+    {
+      "id": "case_5",
+      "input": "Can I upgrade my subscription plan from monthly to annual billing?",
+      "expected_category": "billing",
+      "expected_difficulty": "easy",
+      "notes": "Plan change with explicit billing wording. Labeled billing over account because money and renewal terms change."
+    },
+    {
+      "id": "case_6",
+      "input": "Could you send me a copy of last month's invoice? I need it for my accountant.",
+      "expected_category": "billing",
+      "expected_difficulty": "easy",
+      "notes": "Invoice document request."
+    },
+    {
+      "id": "case_7",
+      "input": "I need to update the credit card on file before my next renewal.",
+      "expected_category": "billing",
+      "expected_difficulty": "easy",
+      "notes": "Payment-method change. Tempting to call it account, but no login or profile state is involved."
+    },
+    {
+      "id": "case_8",
+      "input": "I applied promo code SAVE20 at checkout but the discount was not applied to my total.",
+      "expected_category": "billing",
+      "expected_difficulty": "easy",
+      "notes": "Pricing and discount dispute."
+    },
+    {
+      "id": "case_9",
+      "input": "I requested a refund 10 days ago and I still do not see it on my statement.",
+      "expected_category": "billing",
+      "expected_difficulty": "easy",
+      "notes": "Refund status follow-up."
+    },
+    {
+      "id": "case_10",
+      "input": "Please cancel my subscription and refund this month's charge.",
+      "expected_category": "billing",
+      "expected_difficulty": "easy",
+      "notes": "Cancellation plus refund. Refund makes billing the stronger label over account."
+    },
+    {
+      "id": "case_11",
+      "input": "After I downgraded, I was charged a prorated amount I do not understand. Can you explain the math?",
+      "expected_category": "billing",
+      "expected_difficulty": "medium",
+      "notes": "Requires billing-cycle and proration knowledge to answer."
+    },
+    {
+      "id": "case_12",
+      "input": "We need a VAT invoice with our company tax ID included for compliance.",
+      "expected_category": "billing",
+      "expected_difficulty": "medium",
+      "notes": "Tax documentation. The word compliance tempts a general label, but the deliverable is a billing document."
+    },
+    {
+      "id": "case_13",
+      "input": "Can we move our billing date to the 1st of each month to match our accounting cycle?",
+      "expected_category": "billing",
+      "expected_difficulty": "medium",
+      "notes": "Billing cycle configuration change."
+    },
+    {
+      "id": "case_14",
+      "input": "My card was declined but I still see a charge pending. What happened?",
+      "expected_category": "billing",
+      "expected_difficulty": "medium",
+      "notes": "Payment failure combined with a pending charge; concerns payment state."
+    },
+    {
+      "id": "case_15",
+      "input": "The invoice shows 25 seats but we only have 18 active users this month.",
+      "expected_category": "billing",
+      "expected_difficulty": "medium",
+      "notes": "Quantity dispute. Could read as account administration, but the artifact under dispute is the invoice."
+    },
+    {
+      "id": "case_16",
+      "input": "Can we switch our invoices from USD to EUR? Our finance team is based in Berlin.",
+      "expected_category": "billing",
+      "expected_difficulty": "medium",
+      "notes": "Currency and invoicing configuration."
+    },
+    {
+      "id": "case_17",
+      "input": "I received an overdue balance notice but our account has always been current. Please review.",
+      "expected_category": "billing",
+      "expected_difficulty": "medium",
+      "notes": "Disputes a billing notice. Uses the word account, so it is a deliberate distractor."
+    },
+    {
+      "id": "case_18",
+      "input": "Our annual renewal is coming up and I noticed the price increased. Can you explain?",
+      "expected_category": "billing",
+      "expected_difficulty": "medium",
+      "notes": "Renewal pricing question."
+    },
+    {
+      "id": "case_19",
+      "input": "I never signed up for a paid plan. My free trial just ended and now I have been charged.",
+      "expected_category": "billing",
+      "expected_difficulty": "hard",
+      "notes": "Genuinely ambiguous billing vs account. Labeled billing because the actionable complaint is an unwanted charge; the trial state is context."
+    },
+    {
+      "id": "case_20",
+      "input": "We are a registered nonprofit. How do we apply for tax-exempt billing status?",
+      "expected_category": "billing",
+      "expected_difficulty": "hard",
+      "notes": "Reads like onboarding but the outcome is a change to billing status. Good test of intent vs tone."
+    },
+    {
+      "id": "case_21",
+      "input": "The receipt I received shows a different amount than the confirmation email. Which one is correct?",
+      "expected_category": "billing",
+      "expected_difficulty": "medium",
+      "notes": "Contradictory billing artifacts; needs reconciliation."
+    },
+    {
+      "id": "case_22",
+      "input": "Can I add a purchase order number to future invoices for our procurement team?",
+      "expected_category": "billing",
+      "expected_difficulty": "medium",
+      "notes": "Invoice metadata configuration request."
+    },
+    {
+      "id": "case_23",
+      "input": "Our finance department needs invoices consolidated into one monthly document instead of per-seat charges.",
+      "expected_category": "billing",
+      "expected_difficulty": "hard",
+      "notes": "Ambiguous billing vs account. Consolidated invoicing is a billing preference tied to the org structure; labeled billing because the output is a financial document."
+    },
+    {
+      "id": "case_24",
+      "input": "The app crashes every time I try to upload a file larger than 10MB.",
+      "expected_category": "technical",
+      "expected_difficulty": "easy",
+      "notes": "Reproducible crash with a clear threshold."
+    },
+    {
+      "id": "case_25",
+      "input": "Our nightly webhook deliveries stopped two days ago. No errors on our end.",
+      "expected_category": "technical",
+      "expected_difficulty": "medium",
+      "notes": "Integration failure. Mentions no error, so the classifier must infer from the broken pipeline."
+    },
+    {
+      "id": "case_26",
+      "input": "Exports to PDF come out blank after the latest release.",
+      "expected_category": "technical",
+      "expected_difficulty": "easy",
+      "notes": "Feature breakage tied to a release."
+    },
+    {
+      "id": "case_27",
+      "input": "The mobile app on iOS closes immediately when I open the reports tab.",
+      "expected_category": "technical",
+      "expected_difficulty": "easy",
+      "notes": "Platform-specific crash."
+    },
+    {
+      "id": "case_28",
+      "input": "Search returns zero results even for records I can see in the list view.",
+      "expected_category": "technical",
+      "expected_difficulty": "medium",
+      "notes": "Inconsistent behavior between two code paths; no error code given."
+    },
+    {
+      "id": "case_29",
+      "input": "We are getting 429 rate limit errors during our bulk sync.",
+      "expected_category": "technical",
+      "expected_difficulty": "medium",
+      "notes": "API throttling. 429 is an error code so it is a clear technical tell."
+    },
+    {
+      "id": "case_30",
+      "input": "Data I enter on the web app does not appear on mobile for about an hour.",
+      "expected_category": "technical",
+      "expected_difficulty": "medium",
+      "notes": "Replication delay. Latency implies a pipeline problem."
+    },
+    {
+      "id": "case_31",
+      "input": "I get 'Error 1042' when saving a new customer record. What does it mean?",
+      "expected_category": "technical",
+      "expected_difficulty": "easy",
+      "notes": "Error code blocks a write operation. The question mark tempts general, but the trigger is a system fault."
+    },
+    {
+      "id": "case_32",
+      "input": "Your dashboard does not render correctly in Safari 16. Charts overlap.",
+      "expected_category": "technical",
+      "expected_difficulty": "medium",
+      "notes": "Browser-specific rendering defect."
+    },
+    {
+      "id": "case_33",
+      "input": "Our SAML SSO login started failing with a signature validation error after we rotated certificates.",
+      "expected_category": "technical",
+      "expected_difficulty": "hard",
+      "notes": "Ambiguous technical vs account. SSO is identity territory, but a signature validation error is a protocol-level fault. Labeled technical."
+    },
+    {
+      "id": "case_34",
+      "input": "Our API token stopped working and returns 401 despite not expiring.",
+      "expected_category": "technical",
+      "expected_difficulty": "medium",
+      "notes": "Machine-to-machine auth failure. Distinct from a human login problem, which would be account."
+    },
+    {
+      "id": "case_35",
+      "input": "We see database connection timeouts during peak hours.",
+      "expected_category": "technical",
+      "expected_difficulty": "easy",
+      "notes": "Infrastructure symptom during load."
+    },
+    {
+      "id": "case_36",
+      "input": "Attachments over 25MB are rejected with a size limit error. Can the limit be raised?",
+      "expected_category": "technical",
+      "expected_difficulty": "medium",
+      "notes": "Requests a configuration change, but the trigger is a system-enforced limit."
+    },
+    {
+      "id": "case_37",
+      "input": "Email and push notifications stopped being delivered to our users last week.",
+      "expected_category": "technical",
+      "expected_difficulty": "medium",
+      "notes": "Delivery pipeline failure across two channels."
+    },
+    {
+      "id": "case_38",
+      "input": "Dark mode makes some table text invisible.",
+      "expected_category": "technical",
+      "expected_difficulty": "easy",
+      "notes": "Styling and rendering bug."
+    },
+    {
+      "id": "case_39",
+      "input": "A CSV import partially succeeded: 40 rows loaded, 60 silently skipped.",
+      "expected_category": "technical",
+      "expected_difficulty": "medium",
+      "notes": "Silent failure with data-integrity impact. High-severity technical."
+    },
+    {
+      "id": "case_40",
+      "input": "The login page returns a 502 Bad Gateway intermittently.",
+      "expected_category": "technical",
+      "expected_difficulty": "hard",
+      "notes": "Ambiguous technical vs account; the word login pulls toward account, but 502 is an infrastructure fault, not a credential problem."
+    },
+    {
+      "id": "case_41",
+      "input": "Scheduled report emails send twice every morning.",
+      "expected_category": "technical",
+      "expected_difficulty": "medium",
+      "notes": "Duplicate execution in a scheduler."
+    },
+    {
+      "id": "case_42",
+      "input": "The integration with our Slack workspace disconnects every few days and needs reauthorizing.",
+      "expected_category": "technical",
+      "expected_difficulty": "medium",
+      "notes": "Recurring integration failure. Reauthorizing sounds account-ish, which is the distractor."
+    },
+    {
+      "id": "case_43",
+      "input": "I need to change the email address associated with my account.",
+      "expected_category": "account",
+      "expected_difficulty": "easy",
+      "notes": "Identity change on the user record."
+    },
+    {
+      "id": "case_44",
+      "input": "How do I enable two-factor authentication?",
+      "expected_category": "account",
+      "expected_difficulty": "easy",
+      "notes": "Security setting on the user's own account."
+    },
+    {
+      "id": "case_45",
+      "input": "Please permanently delete my account and all associated data.",
+      "expected_category": "account",
+      "expected_difficulty": "easy",
+      "notes": "Account lifecycle request."
+    },
+    {
+      "id": "case_46",
+      "input": "We accidentally created two accounts. Can they be merged?",
+      "expected_category": "account",
+      "expected_difficulty": "medium",
+      "notes": "Account consolidation."
+    },
+    {
+      "id": "case_47",
+      "input": "I need to transfer ownership of our workspace to a colleague.",
+      "expected_category": "account",
+      "expected_difficulty": "medium",
+      "notes": "Ownership and role change."
+    },
+    {
+      "id": "case_48",
+      "input": "My account is locked after too many failed login attempts.",
+      "expected_category": "account",
+      "expected_difficulty": "easy",
+      "notes": "Lockout is a policy state on the account, not a system fault."
+    },
+    {
+      "id": "case_49",
+      "input": "I want to update the display name and job title on my profile.",
+      "expected_category": "account",
+      "expected_difficulty": "easy",
+      "notes": "Profile metadata edit."
+    },
+    {
+      "id": "case_50",
+      "input": "How do I invite three new team members to our workspace?",
+      "expected_category": "account",
+      "expected_difficulty": "medium",
+      "notes": "User provisioning."
+    },
+    {
+      "id": "case_51",
+      "input": "Please remove a former employee's access immediately.",
+      "expected_category": "account",
+      "expected_difficulty": "medium",
+      "notes": "Offboarding. Security-sensitive and often urgent."
+    },
+    {
+      "id": "case_52",
+      "input": "I forgot my password and want to set a new one.",
+      "expected_category": "account",
+      "expected_difficulty": "easy",
+      "notes": "Credential reset."
+    },
+    {
+      "id": "case_53",
+      "input": "I no longer have access to the email on my old account. How can I recover it?",
+      "expected_category": "account",
+      "expected_difficulty": "medium",
+      "notes": "Recovery when the recovery factor itself is lost. Harder identity verification."
+    },
+    {
+      "id": "case_54",
+      "input": "Can you change my role from Viewer to Admin?",
+      "expected_category": "account",
+      "expected_difficulty": "medium",
+      "notes": "Permission change, permission-sensitive."
+    },
+    {
+      "id": "case_55",
+      "input": "I want to change the timezone on my account so reports align with my local time.",
+      "expected_category": "account",
+      "expected_difficulty": "medium",
+      "notes": "User preference stored on the account."
+    },
+    {
+      "id": "case_56",
+      "input": "Signing in with Google created a second profile instead of linking to my existing one.",
+      "expected_category": "account",
+      "expected_difficulty": "medium",
+      "notes": "Identity linking problem. Could be read as a technical bug, but the resolution is account merging."
+    },
+    {
+      "id": "case_57",
+      "input": "We need to verify our company domain to control who can sign up.",
+      "expected_category": "account",
+      "expected_difficulty": "medium",
+      "notes": "Domain and tenant administration."
+    },
+    {
+      "id": "case_58",
+      "input": "My session logs me out every five minutes, which is impractical.",
+      "expected_category": "account",
+      "expected_difficulty": "hard",
+      "notes": "Ambiguous account vs technical: could be a deliberate session policy or a bug. Labeled account because session lifetime is typically a configured policy; note the uncertainty."
+    },
+    {
+      "id": "case_59",
+      "input": "Can I close my account now and reopen it later without losing my data?",
+      "expected_category": "account",
+      "expected_difficulty": "medium",
+      "notes": "Asks about lifecycle policy and data retention."
+    },
+    {
+      "id": "case_60",
+      "input": "Our account was suspended without explanation. Please reinstate it.",
+      "expected_category": "account",
+      "expected_difficulty": "hard",
+      "notes": "Ambiguous account vs billing: suspensions frequently originate in failed payments, but no billing detail is given. Labeled account on the text alone."
+    },
+    {
+      "id": "case_61",
+      "input": "I would like a copy of all personal data you hold about me.",
+      "expected_category": "account",
+      "expected_difficulty": "hard",
+      "notes": "Ambiguous account vs general: a data subject request framed as compliance, but the subject is the user's own account data."
+    },
+    {
+      "id": "case_62",
+      "input": "Do you offer a discount for annual prepayment?",
+      "expected_category": "general",
+      "expected_difficulty": "easy",
+      "notes": "Pre-sales question. No existing charge, which keeps it out of billing."
+    },
+    {
+      "id": "case_63",
+      "input": "Do you have a public REST API, and where is the documentation?",
+      "expected_category": "general",
+      "expected_difficulty": "easy",
+      "notes": "Asks whether a capability exists rather than reporting a failure. That distinction separates it from technical."
+    },
+    {
+      "id": "case_64",
+      "input": "Is there a partner or reseller program we could join?",
+      "expected_category": "general",
+      "expected_difficulty": "medium",
+      "notes": "Business development inquiry."
+    },
+    {
+      "id": "case_65",
+      "input": "Is a bulk import or CRM integration on the roadmap?",
+      "expected_category": "general",
+      "expected_difficulty": "easy",
+      "notes": "Product roadmap question."
+    },
+    {
+      "id": "case_66",
+      "input": "Where can I find the getting-started guide?",
+      "expected_category": "general",
+      "expected_difficulty": "easy",
+      "notes": "Documentation pointer."
+    },
+    {
+      "id": "case_67",
+      "input": "Do you run training webinars for new customers?",
+      "expected_category": "general",
+      "expected_difficulty": "easy",
+      "notes": "Enablement question."
+    },
+    {
+      "id": "case_68",
+      "input": "Are you SOC 2 Type II certified? We need it for our vendor review.",
+      "expected_category": "general",
+      "expected_difficulty": "medium",
+      "notes": "Compliance inquiry for procurement. Tone is formal, which can mislead."
+    },
+    {
+      "id": "case_69",
+      "input": "Can you confirm where our data is stored and whether it stays in the EU?",
+      "expected_category": "general",
+      "expected_difficulty": "hard",
+      "notes": "Ambiguous general vs technical: data residency is a contractual and compliance question, not a live failure. Labeled general."
+    },
+    {
+      "id": "case_70",
+      "input": "What is the difference between the Pro and Enterprise plans?",
+      "expected_category": "general",
+      "expected_difficulty": "easy",
+      "notes": "Plan comparison before purchase."
+    },
+    {
+      "id": "case_71",
+      "input": "I would like to speak with someone in sales about a 200-seat rollout.",
+      "expected_category": "general",
+      "expected_difficulty": "easy",
+      "notes": "Sales handoff request."
+    },
+    {
+      "id": "case_72",
+      "input": "Just a suggestion: it would help if the export menu remembered my last format.",
+      "expected_category": "general",
+      "expected_difficulty": "easy",
+      "notes": "Product feedback, not a defect report."
+    },
+    {
+      "id": "case_73",
+      "input": "Are you hiring backend engineers? I could not find a careers page.",
+      "expected_category": "general",
+      "expected_difficulty": "easy",
+      "notes": "Recruiting inquiry. Mentions a missing page, which is a distractor toward technical."
+    },
+    {
+      "id": "case_74",
+      "input": "I am writing an article about your company and would like a comment.",
+      "expected_category": "general",
+      "expected_difficulty": "easy",
+      "notes": "Press inquiry."
+    },
+    {
+      "id": "case_75",
+      "input": "Is there a public status page I can check during outages?",
+      "expected_category": "general",
+      "expected_difficulty": "hard",
+      "notes": "Ambiguous general vs technical: outage-adjacent, but the request is for an information resource, not a fix."
+    },
+    {
+      "id": "case_76",
+      "input": "Do you support HIPAA and will you sign a BAA?",
+      "expected_category": "general",
+      "expected_difficulty": "medium",
+      "notes": "Compliance and contract question."
+    },
+    {
+      "id": "case_77",
+      "input": "Is support available in Spanish, and during which hours?",
+      "expected_category": "general",
+      "expected_difficulty": "medium",
+      "notes": "Service availability inquiry written in English about another language."
+    },
+    {
+      "id": "case_78",
+      "input": "Hola, quisiera saber cuánto cuesta el plan para 50 usuarios y si incluye soporte prioritario.",
+      "expected_category": "general",
+      "expected_difficulty": "hard",
+      "notes": "Mixed-language edge case (Spanish). Asks pricing and support availability, which is a pre-sales question rather than a billing dispute. Tests multilingual handling."
+    },
+    {
+      "id": "case_79",
+      "input": "Great job on the update. Now the app takes a full minute to load a page. Absolutely brilliant work.",
+      "expected_category": "technical",
+      "expected_difficulty": "hard",
+      "notes": "Sarcasm edge case. Literal sentiment is positive while intent is a performance complaint. Labeled technical because the actionable content is a latency defect."
+    },
+    {
+      "id": "case_80",
+      "input": "cant log in!! reset lnik never arives. plz help asap!!!",
+      "expected_category": "account",
+      "expected_difficulty": "hard",
+      "notes": "Typo-laden and terse edge case. Same intent as case_2 with degraded surface form: tests robustness to misspellings and excessive punctuation."
+    }
+  ]
+}
